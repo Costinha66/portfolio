@@ -4,101 +4,41 @@ const PROJECTS = [
   {
     id: "conflict-warehouse",
     title: "Conflict & Crisis Data Warehouse",
-    subtitle: "UNHCR + ACLED · DuckDB · Polars · Streamlit",
+    subtitle: "UNHCR + ACLED · DuckDB · Pandas",
     description:
-      "Reproducible Bronze/Silver/Gold lakehouse with ingestion manifest, DQ gates, curated gold marts (lags/rolling features), and a 1-click analytics app for flows vs. conflict overlays.",
-    highlights: ["Bronze/Silver/Gold", "Ingestion manifest", "DQ checks", "Streamlit app"],
-    tags: ["Data Engineering", "DuckDB", "ETL", "Public Policy"],
+      "Reproducible Bronze/Silver/Gold lakehouse with ingestion manifest, data-quality gates, and curated gold marts for refugee flows vs conflict.",
+    highlights: ["Bronze/Silver/Gold", "Ingestion manifest", "DQ checks"],
+    tags: ["Data Engineering", "DuckDB", "Public Policy"],
     status: "Live MVP",
     repo: "https://github.com/Costinha66/conflit_warehouse",
-    demo: null,
-    year: 2025,
-  },
-  {
-    id: "recsys-in-a-box",
-    title: "Recommendation System in a Box",
-    subtitle: "FastAPI · Ranking · Docker Compose",
-    description:
-      "A minimal yet realistic e-commerce recommender (hybrid CF + content) with feature store stubs, offline metrics, and live API endpoints.",
-    highlights: ["Hybrid ranking", "FastAPI", "Offline metrics", "Docker"],
-    tags: ["ML Systems", "Recommenders", "APIs"],
-    status: "Prototype",
-    repo: "#",
-    demo: null,
-    year: 2025,
   },
   {
     id: "foodsub-explorer",
     title: "FoodSub Explorer",
     subtitle: "Embeddings · Graph KG · Retrieval",
     description:
-      "Ingredient embeddings and substitution graph for context-aware swaps (nutrition, constraints, flavor proximity) with a simple interactive explorer.",
-    highlights: ["Embeddings", "Graph", "Retriever"],
+      "Ingredient embeddings + substitution graph for context-aware swaps (nutrition, constraints, flavor proximity).",
+    highlights: ["Embeddings", "Graph"],
     tags: ["NLP", "Knowledge Graph", "Food"],
-    status: "Work in progress",
-    repo: "#",
-    demo: null,
-    year: 2025,
+    status: "Delivered",
   },
   {
     id: "mvl-object-labeler",
-    title: "Multimodal Object Labeler",
-    subtitle: "Vision-Language · Q&A over images",
+    title: "Multimodal Object Labeler - Eggshell",
+    subtitle: "Vision-Language · VLM · Streamlit",
     description:
-      "Upload an image and ask questions like ‘How many cracked eggs?’ or ‘Which grains are damaged?’ Uses a light VLM with promptable tools.",
-    highlights: ["VLM Q&A", "Prompt tools"],
-    tags: ["Computer Vision", "VLM", "Applied AI"],
-    status: "Concept",
-    repo: "#",
-    demo: null,
-    year: 2025,
-  },
-  {
-    id: "urban-heat-mapping",
-    title: "Urban Heat Mapping",
-    subtitle: "Geospatial · Sentinel · Anomaly Detection",
-    description:
-      "A compact geo pipeline that surfaces temperature anomalies over time for selected cities, with policy-style storytelling.",
-    highlights: ["NDVI/LST proxies", "Timeseries", "Story cards"],
-    tags: ["Geospatial", "Time Series", "Public Policy"],
-    status: "Idea",
-    repo: "#",
-    demo: null,
-    year: 2025,
-  },
-  {
-    id: "music-similarity",
-    title: "Duet Similarity Explorer",
-    subtitle: "Audio Embeddings · 2-Cellos fun",
-    description:
-      "Embeds tracks to explore ‘duet compatibility’ and arrange playable pairings. Personal, musical, and nerdy.",
-    highlights: ["Audio2Vec", "Nearest neighbors"],
-    tags: ["Audio", "Embeddings", "Playful"],
-    status: "Idea",
-    repo: "#",
-    demo: null,
-    year: 2025,
+      "App that supports the upload of an image to detect and describe features in a eggshell",
+    highlights: ["VLM Q&A"],
+    tags: ["Computer Vision", "VLM"],
+    status: "Delivered",
   },
 ];
 
-const TAGS = [
-  "All",
-  "Data Engineering",
-  "ML Systems",
-  "Computer Vision",
-  "VLM",
-  "NLP",
-  "Knowledge Graph",
-  "Geospatial",
-  "Audio",
-  "Public Policy",
-  "ETL",
-  "APIs",
-];
+const TAGS = ["All", "Data Engineering", "ML Systems", "NLP", "Computer Vision", "Public Policy"];
 
 function Badge({ children }) {
   return (
-    <span className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium opacity-90">
+    <span className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800/60 dark:text-slate-100">
       {children}
     </span>
   );
@@ -106,28 +46,30 @@ function Badge({ children }) {
 
 function Stat({ label, value }) {
   return (
-    <div className="flex flex-col items-start gap-1 rounded-2xl border p-4 shadow-sm">
-      <div className="text-sm opacity-70">{label}</div>
-      <div className="text-2xl font-semibold tracking-tight">{value}</div>
+    <div className="flex flex-col gap-1 rounded-2xl bg-white/60 p-4 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900/40 dark:ring-slate-800">
+      <p className="text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-300">
+        {label}
+      </p>
+      <p className="text-2xl font-semibold text-slate-900 dark:text-white">{value}</p>
     </div>
   );
 }
 
 function Header() {
   return (
-    <header className="sticky top-0 z-20 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-neutral-900/70 bg-white/90 dark:bg-neutral-900/90 border-b">
-      <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
-        <a href="#home" className="text-lg font-semibold">
+    <header className="sticky top-0 z-20 border-b border-slate-900/40 bg-slate-950/90 backdrop-blur">
+      <div className="mx-auto flex w-full items-center justify-between px-6 py-3">
+        <a href="#home" className="text-sm font-semibold tracking-tight">
           Filipe Costa
         </a>
-        <nav className="flex items-center gap-3 text-sm">
-          <a className="hover:opacity-80" href="#projects">
+        <nav className="flex gap-4 text-sm text-slate-600 dark:text-slate-200">
+          <a className="hover:text-slate-900 dark:hover:text-white" href="#projects">
             Projects
           </a>
-          <a className="hover:opacity-80" href="#about">
+          <a className="hover:text-slate-900 dark:hover:text-white" href="#about">
             About
           </a>
-          <a className="hover:opacity-80" href="#contact">
+          <a className="hover:text-slate-900 dark:hover:text-white" href="#contact">
             Contact
           </a>
         </nav>
@@ -149,39 +91,56 @@ function useDarkPref() {
 function Hero() {
   const { enabled, setEnabled } = useDarkPref();
   return (
-    <section id="home" className="mx-auto max-w-6xl px-4 pt-10 pb-8">
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div className="max-w-2xl">
-          <h1 className="text-4xl md:text-5xl font-semibold leading-tight">
-            Data Scientist → Systems Thinker
-          </h1>
-          <p className="mt-4 text-lg opacity-80">
-            I build lean, production-minded ML/AI systems and clear data products. From e-commerce
-            recommenders to refugee-flow warehouses and VLM demos, my work favors clarity, speed, and
-            measurable impact.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            <Badge>Python</Badge>
-            <Badge>DuckDB</Badge>
-            <Badge>Polars</Badge>
-            <Badge>PyTorch</Badge>
-            <Badge>FastAPI</Badge>
-            <Badge>Streamlit</Badge>
+    <section
+      id="home"
+      className="min-h-[calc(100vh-3.5rem)] w-full bg-slate-950 text-slate-100"
+    >
+      <div className="mx-auto w-full px-6 py-10 lg:py-14">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-start">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-300">
+              Data Scientist · EngD @ JADS
+            </p>
+            <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl lg:text-6xl">
+              I build ML systems and data products that people can actually use and understand.
+            </h1>
+            <p className="mt-5 max-w-2xl text-base text-slate-200/90">
+              My work spans from large-scale recommendation systems serving millions of users to multimodal AI models combining vision and text. 
+              I’m currently exploring robust, interpretable ML architectures through an EngD at JADS.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              <Badge>Machine Learning</Badge>
+              <Badge>Recommender Systems</Badge>
+              <Badge>Causal Inference</Badge>
+              <Badge>Deep Learning</Badge>
+              <Badge>Python</Badge>
+              <Badge>Pyspark</Badge>
+              <Badge>DuckDB</Badge>
+              <Badge>Polars</Badge>
+              <Badge>FastAPI</Badge>
+            </div>
+            <div className="mt-7 flex gap-3">
+              <a
+                href="#projects"
+                className="rounded-xl bg-slate-100 px-4 py-2 text-sm font-medium text-slate-950 shadow hover:bg-white"
+              >
+                View projects
+              </a>
+              <button
+                onClick={() => setEnabled(!enabled)}
+                className="rounded-xl border border-slate-700/70 bg-slate-950/40 px-4 py-2 text-sm text-slate-100 hover:bg-slate-900"
+              >
+                {enabled ? "Dark" : "Light"} mode
+              </button>
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col items-end gap-3 w-full md:w-auto">
-          <div className="grid grid-cols-3 gap-3 w-full md:w-80">
-            <Stat label="Years in DS/ML" value="3+" />
-            <Stat label="Deployed projects" value="10+" />
-            <Stat label="Domains" value="5" />
+          <div className="flex justify-end">
+            <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1 w-full max-w-sm">
+              <Stat label="Years in DS/ML" value="4" />
+              <Stat label="Deployed projects" value="10+" />
+              <Stat label="Domains" value="Finance, E-commerce, Agriculture, Food industry, Cybercrime" />
+            </div>
           </div>
-          <button
-            onClick={() => setEnabled(!enabled)}
-            className="mt-2 rounded-xl border px-3 py-2 text-sm hover:shadow"
-            title="Toggle theme"
-          >
-            {enabled ? "☾ Dark" : "☀︎ Light"}
-          </button>
         </div>
       </div>
     </section>
@@ -190,48 +149,42 @@ function Hero() {
 
 function ProjectCard({ p }) {
   return (
-    <article className="group relative flex flex-col gap-3 rounded-3xl border p-5 shadow-sm hover:shadow-md transition-shadow">
-      <div className="flex items-center justify-between gap-2">
-        <h3 className="text-xl font-semibold leading-snug">{p.title}</h3>
-        <span className="text-xs rounded-full border px-2 py-1 opacity-80">{p.status}</span>
+    <article className="flex flex-col gap-3 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200/80 transition hover:-translate-y-0.5 hover:shadow-md dark:bg-slate-900/40 dark:ring-slate-800">
+      <div className="flex items-start justify-between gap-2">
+        <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{p.title}</h3>
+        <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-slate-500 dark:bg-slate-800/70 dark:text-slate-200">
+          {p.status}
+        </span>
       </div>
-      <div className="text-sm opacity-70">{p.subtitle}</div>
-      <p className="text-[15px] leading-6 opacity-90">{p.description}</p>
-      <div className="flex flex-wrap gap-2 pt-1">
-        {p.highlights.map((h) => (
-          <span key={h} className="text-xs rounded-full bg-black/5 dark:bg-white/10 px-2 py-1">
+      <p className="text-xs text-slate-500 dark:text-slate-300">{p.subtitle}</p>
+      <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-100">{p.description}</p>
+      <div className="flex flex-wrap gap-2">
+        {p.highlights?.map((h) => (
+          <span
+            key={h}
+            className="rounded-full bg-slate-50 px-2 py-1 text-[10px] font-medium text-slate-500 ring-1 ring-slate-100 dark:bg-slate-900/40 dark:text-slate-200 dark:ring-slate-800/60"
+          >
             {h}
           </span>
         ))}
       </div>
-      <div className="flex flex-wrap gap-2 pt-2">
-        {p.tags.map((t) => (
+      <div className="flex flex-wrap gap-2">
+        {p.tags?.map((t) => (
           <Badge key={t}>{t}</Badge>
         ))}
       </div>
-      <div className="mt-2 flex items-center gap-3">
+      <div className="pt-1">
         {p.repo && (
           <a
             href={p.repo}
-            className="rounded-xl border px-3 py-2 text-sm hover:shadow"
             target="_blank"
             rel="noreferrer"
+            className="text-sm font-medium text-slate-900 hover:underline dark:text-slate-100"
           >
             View repo ↗
           </a>
         )}
-        {p.demo && (
-          <a
-            href={p.demo}
-            className="rounded-xl border px-3 py-2 text-sm hover:shadow"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Live demo ↗
-          </a>
-        )}
       </div>
-      <div className="absolute inset-0 rounded-3xl ring-1 ring-transparent group-hover:ring-black/10 dark:group-hover:ring-white/10 pointer-events-none" />
     </article>
   );
 }
@@ -243,37 +196,38 @@ function ProjectsSection() {
   const filtered = useMemo(() => {
     return PROJECTS.filter((p) => {
       const q = query.toLowerCase().trim();
-      const byText =
+      const matchesText =
         !q ||
         p.title.toLowerCase().includes(q) ||
         p.description.toLowerCase().includes(q) ||
-        p.subtitle.toLowerCase().includes(q) ||
-        p.tags.join(" ").toLowerCase().includes(q);
-      const byTag = tag === "All" || p.tags.includes(tag);
-      return byText && byTag;
+        p.subtitle.toLowerCase().includes(q);
+      const matchesTag = tag === "All" || p.tags?.includes(tag);
+      return matchesText && matchesTag;
     });
   }, [query, tag]);
 
   return (
-    <section id="projects" className="mx-auto max-w-6xl px-4 py-8">
-      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+    <section id="projects" className="mx-auto w-full px-6 py-10">
+      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
-          <h2 className="text-2xl md:text-3xl font-semibold">Projects</h2>
-          <p className="mt-1 opacity-80 text-sm max-w-2xl">
-            A selection of compact, production-minded projects. Search or filter by tag.
+          <h2 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-white">
+            Projects
+          </h2>
+          <p className="text-sm text-slate-500 dark:text-slate-300">
+            Compact, production-minded projects that match my CV.
           </p>
         </div>
-        <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
+        <div className="flex flex-col gap-2 sm:flex-row">
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search projects…"
-            className="w-full sm:w-72 rounded-xl border px-3 py-2 text-sm bg-transparent"
+            className="w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 text-sm outline-none ring-slate-200 focus:ring-2 dark:border-slate-800 dark:bg-slate-900/40"
           />
           <select
             value={tag}
             onChange={(e) => setTag(e.target.value)}
-            className="rounded-xl border px-3 py-2 text-sm bg-transparent"
+            className="rounded-xl border border-slate-200 bg-white/80 px-3 py-2 text-sm dark:border-slate-800 dark:bg-slate-900/40"
           >
             {TAGS.map((t) => (
               <option key={t} value={t}>
@@ -284,7 +238,7 @@ function ProjectsSection() {
         </div>
       </div>
 
-      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {filtered.map((p) => (
           <ProjectCard key={p.id} p={p} />
         ))}
@@ -295,20 +249,20 @@ function ProjectsSection() {
 
 function About() {
   return (
-    <section id="about" className="mx-auto max-w-6xl px-4 py-10">
-      <div className="rounded-3xl border p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold">About</h2>
-        <p className="mt-3 leading-7 opacity-90 max-w-3xl">
-          I’ve shipped recommenders at scale (Prozis), built conflict-aware data products for
-          humanitarian insight, and currently pursue an EngD at JADS focused on robust, deployable AI
-          systems. I care about clear architectures, measurable outcomes, and making complex ideas
-          easy to use.
+    <section id="about" className="mx-auto w-full px-6 py-10">
+      <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200/80 dark:bg-slate-900/40 dark:ring-slate-800">
+        <h2 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-white">
+          About
+        </h2>
+        <p className="mt-3 text-sm leading-relaxed text-slate-700 dark:text-slate-100">
+          I’ve shipped recommenders at scale (Prozis), worked on conflict/crisis data (warehouse for
+          refugee flows), and I’m doing an EngD at JADS to go deeper into reliable AI systems. I like
+          to show working code, good docs, and realistic data products.
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           <Badge>Recommenders</Badge>
-          <Badge>VLM & Vision</Badge>
           <Badge>ETL & Lakehouse</Badge>
-          <Badge>Experimentation</Badge>
+          <Badge>VLM</Badge>
           <Badge>Stakeholder Comms</Badge>
         </div>
       </div>
@@ -318,40 +272,48 @@ function About() {
 
 function Contact() {
   return (
-    <section id="contact" className="mx-auto max-w-6xl px-4 pb-14">
-      <div className="rounded-3xl border p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold">Contact</h2>
-        <p className="mt-2 opacity-90">Based in Eindhoven, NL — open to EU-wide roles and collaborations.</p>
-        <div className="mt-4 flex flex-wrap items-center gap-3">
-          <a href="mailto:filipeedge@gmail.com" className="rounded-xl border px-3 py-2 text-sm hover:shadow">
+    <section id="contact" className="mx-auto w-full px-6 py-10">
+      <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200/80 dark:bg-slate-900/40 dark:ring-slate-800">
+        <h2 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-white">
+          Contact
+        </h2>
+        <p className="mt-2 text-sm text-slate-600 dark:text-slate-100">
+          Based in Eindhoven, NL — open to EU-wide roles and collaborations.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <a
+            href="mailto:filipeedge@gmail.com"
+            className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-950"
+          >
             Email me
-          </a>
-          <a href="#" className="rounded-xl border px-3 py-2 text-sm hover:shadow" title="Attach your latest CV">
-            Download CV
           </a>
           <a
             href="https://github.com/Costinha66"
             target="_blank"
             rel="noreferrer"
-            className="rounded-xl border px-3 py-2 text-sm hover:shadow"
+            className="rounded-xl border border-slate-200 bg-white/60 px-4 py-2 text-sm text-slate-900 hover:bg-white dark:border-slate-800 dark:bg-slate-900/40 dark:text-slate-100"
           >
             GitHub ↗
           </a>
-          <a href="#" className="rounded-xl border px-3 py-2 text-sm hover:shadow">
+          <a
+            href="https://www.linkedin.com/in/filipe-costa-b3199b13b/"
+            target="_blank"
+            className="rounded-xl border border-slate-200 bg-white/60 px-4 py-2 text-sm text-slate-900 hover:bg-white dark:border-slate-800 dark:bg-slate-900/40 dark:text-slate-100"
+          >
             LinkedIn ↗
           </a>
         </div>
       </div>
-      <footer className="mt-6 text-center text-xs opacity-60">
-        © {new Date().getFullYear()} Filipe Costa — Built with React & Tailwind classes
-      </footer>
+      <p className="mt-6 text-center text-xs text-slate-400 dark:text-slate-500">
+        © {new Date().getFullYear()} Filipe Costa — Portfolio
+      </p>
     </section>
   );
 }
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 selection:bg-black/10 dark:selection:bg-white/20">
+    <div className="min-h-screen">
       <Header />
       <Hero />
       <ProjectsSection />
